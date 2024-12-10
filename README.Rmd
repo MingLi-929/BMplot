@@ -52,13 +52,13 @@ bmData <- function(value1 = NULL, value2 = NULL,
 For the sake of convenience, `BMplot` provide two functions encloseing the constructor. Users can use `makebmDataFromData()` to make bmData object from data. The data should be organized in one of the `Granges`, `GrangeList`, `data.frame` and `list` structure. 
 ```{r eval=FALSE}
 # simulated grange and grangelist object
-files <- getSampleFiles()
+files <- ChIPseeker::getSampleFiles()
 
 gr1 <- readPeakFile(files[[4]])
 mcols(gr1)[[1]] <- runif(length(gr1))
 
 # make bmData from grange object
-dmData_grange <- makebmDataFromData(data = gr1, 
+bmData_grange <- makebmDataFromData(data = gr1, 
                                     sampleNames = c("GSM1295076_CBX6_BF"))
 
 
@@ -67,7 +67,7 @@ gr2 <- readPeakFile(files[[5]])
 mcols(gr2)[[1]] <- runif(length(gr2))
 gr_list <- GRangesList(gr1,gr2)
 
-dmData_grangelist <- makebmDataFromData(data = gr_list,
+bmData_grangelist <- makebmDataFromData(data = gr_list,
                                         sampleNames = c("GSM1295076_CBX6_BF",
                                                         "GSM1295077_CBX7_BF"))
 
@@ -125,7 +125,7 @@ txt_bmData <- makebmDataFromFiles(name = txt_file[[1]],
 `bmData` object can store any base modification data regardless of the size of the data. `simulated_IPO` is the simulated data packed in the BMplot.
 
 ```{r eval=FALSE}
-bmData_A_thaliana <-  makebmDataFromData(data = simulated_IPO,
+bmData_A_thaliana <-  makebmDataFromData(data = simulated_IPD,
                                          sampleNames = c("GSM1522201_WT",
                                                          "GSM1522202_ddm1"))
 

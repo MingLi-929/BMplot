@@ -318,7 +318,9 @@ makebmDataFromFiles.folder <- function(name, variablesNames){
 
   isBedFile <- getFromNamespace("isBedFile","ChIPseeker")
 
-  if(isBedFile(list.files(name))){
+  bed_flag <- all(unlist(lapply(list.files(name), isBedFile)))
+
+  if(bed_flag){
 
     data <- lapply(list.files(name),function(x){
 

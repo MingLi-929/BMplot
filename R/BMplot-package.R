@@ -12,7 +12,7 @@
 ##'
 ##' @name BMplot-package
 ##' @aliases BMplot-package BMplot
-##' @docType package
+##' @docType _PACKAGE
 ##' @author Ming Li
 ##'
 ##' Maintainer: Ming Li \email{limiang929@@gmail.com}

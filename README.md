@@ -3,6 +3,7 @@
 # BMplot: Base Modification Visualization
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 This package implements functions to visualize the profile of base
@@ -57,7 +58,7 @@ value and depth value. User should first extract the methylation value
 from each sample and organize all the methylation value into one
 matrix-like object. Then do the same thing to depth value.
 
-``` r
+```r
 bmData <- function(value1 = NULL, value2 = NULL,
                    pos = NULL, chr = NULL, gr = NULL,
                    sampleNames = NULL, valueNames = NULL,
@@ -69,15 +70,15 @@ the constructor. Users can use `makebmDataFromData()` to make bmData
 object from data. The data should be organized in one of the `Granges`,
 `GrangeList`, `data.frame` and `list` structure.
 
-``` r
+```r
 # simulated grange and grangelist object
-files <- getSampleFiles()
+files <- ChIPseeker::getSampleFiles()
 
 gr1 <- readPeakFile(files[[4]])
 mcols(gr1)[[1]] <- runif(length(gr1))
 
 # make bmData from grange object
-dmData_grange <- makebmDataFromData(data = gr1, 
+bmData_grange <- makebmDataFromData(data = gr1, 
                                     sampleNames = c("GSM1295076_CBX6_BF"))
 
 
@@ -86,7 +87,7 @@ gr2 <- readPeakFile(files[[5]])
 mcols(gr2)[[1]] <- runif(length(gr2))
 gr_list <- GRangesList(gr1,gr2)
 
-dmData_grangelist <- makebmDataFromData(data = gr_list,
+bmData_grangelist <- makebmDataFromData(data = gr_list,
                                         sampleNames = c("GSM1295076_CBX6_BF",
                                                         "GSM1295077_CBX7_BF"))
 
@@ -112,7 +113,7 @@ df_list_bmData <- makebmDataFromData(data = df_list,
 Users can also use `makebmDataFromFiles()` to make bmData object from
 file.
 
-``` r
+```r
 filefolder <- SampleFileFolder()
 
 # test folder with bed files
@@ -146,8 +147,8 @@ txt_bmData <- makebmDataFromFiles(name = txt_file[[1]],
 size of the data. `simulated_IPO` is the simulated data packed in the
 BMplot.
 
-``` r
-bmData_A_thaliana <-  makebmDataFromData(data = simulated_IPO,
+```r
+bmData_A_thaliana <-  makebmDataFromData(data = simulated_IPD,
                                          sampleNames = c("GSM1522201_WT",
                                                          "GSM1522202_ddm1"))
 
@@ -171,7 +172,7 @@ object and mapped it to the sequence data stored in
 `BSgenome.Athaliana.TAIR.TAIR9` by providing the base and motif of our
 interest.
 
-``` r
+```r
 library(BSgenome.Athaliana.TAIR.TAIR9)
 BSgenome_thaliana <- BSgenome.Athaliana.TAIR.TAIR9
 
@@ -193,7 +194,7 @@ methylation level.
 
 ## Base modification visualization
 
-``` r
+```r
 plotBaseModificationProf(thaliana_df,switch_y_value = T)
 ```
 
@@ -206,7 +207,7 @@ plotBaseModificationProf(thaliana_df,switch_y_value = T)
 Users can use the parameter of highlight_lim to emphasize the regions in
 `BMplot`.
 
-``` r
+```r
 plotBaseModificationProf(thaliana_df,switch_y_value = T,
                          highlight_lim = c(5651586,5651913))
 ```
@@ -214,7 +215,7 @@ plotBaseModificationProf(thaliana_df,switch_y_value = T,
 ![](vignettes/figures/highlight.png) This highlight function can also be
 applied to list regions.
 
-``` r
+```r
 BSgenome_human <- BSgenome.Hsapiens.UCSC.hg19
 df_list <- getBaseModificationDf(region = Human_dmR[1:2,],
                                  BSgenome = BSgenome_human,
@@ -237,7 +238,7 @@ track of a chosen database. The `ggbio` was used to plot the gene track
 in accordance with the `GeneModel` parameter. `GeneModel` can be an
 OrganismDb object, TxDb object, EnsDb object, or GrangeList object.
 
-``` r
+```r
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
 library(BSgenome.Hsapiens.UCSC.hg19)
 BSgenome_human <- BSgenome.Hsapiens.UCSC.hg19
@@ -265,7 +266,7 @@ plotBaseModificationProf(human_df,
 You can install the development version of BMplot from
 [GitHub](https://github.com/) with:
 
-``` r
+```r
 # install.packages("devtools")
 devtools::install_github("YuLab-SMU/BMplot")
 ```

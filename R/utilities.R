@@ -97,6 +97,7 @@ loadBSgenome <- function(BSgenome){
 
     ## get the object from BSgenome
     BSgenome_name <- attr(BSgenome,"pkgname")
+    suppressMessages(require(BSgenome_name,character.only = TRUE))
     text <- paste0("package:",BSgenome_name)
     object <- ls(text)[grep("^[^BSgenome]",ls(text))]
     command <- paste0(BSgenome_name,"::",object)
